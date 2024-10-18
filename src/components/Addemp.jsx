@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button,Container } from 'react-bootstrap';
+import SERVER_URL from '../serverUrl';
 const AddEmployee = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ const AddEmployee = () => {
       alert("Username and email are required!");
       return;
     }
-    await axios.post('http://localhost:3000/employees', { username, email, status });
+    await axios.post(`${SERVER_URL}/employees`, { username, email, status });
     navigate('/');
   };
   return (

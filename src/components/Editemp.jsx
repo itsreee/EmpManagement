@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button,Container } from 'react-bootstrap';
+import SERVER_URL from '../serverUrl';
 const EditEmployee = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
@@ -9,7 +10,7 @@ const EditEmployee = () => {
 
   useEffect(() => {
     const fetchEmployee = async () => {
-      const response = await axios.get(`http://localhost:3000/employees/${id}`);
+      const response = await axios.get(`${SERVER_URL}/employees/${id}`);
       setEmployee(response.data);
     };
     fetchEmployee();
@@ -21,7 +22,7 @@ const EditEmployee = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:3000/employees/${id}`, employee);
+    await axios.put(`${SERVER_URL}/employees/${id}`, employee);
     navigate('/');
   };
 

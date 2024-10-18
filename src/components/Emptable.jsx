@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import SERVER_URL from '../serverUrl';
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
 
@@ -10,12 +11,12 @@ const EmployeeList = () => {
   }, []);
 
   const fetchEmployees = async () => {
-    const response = await axios.get('http://localhost:3000/employees');
+    const response = await axios.get(`${SERVER_URL}/employees`);
     setEmployees(response.data);
   };
 
   const deleteEmployee = async (id) => {
-    await axios.delete(`http://localhost:3000/employees/${id}`);
+    await axios.delete(`${SERVER_URL}/employees/${id}`);
     fetchEmployees();
   };
 
